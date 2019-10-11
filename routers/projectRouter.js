@@ -34,13 +34,13 @@ router.get('/', (req, res) => {
 
 // Tasks CRUD
 
-router.post('/:project_id/tasks', (req, res) => {
+router.post('/:id/tasks', (req, res) => {
     const newTask = req.body;
-    const { project_id } = req.params;
+    const { id } = req.params;
     if (!newTask.description) {
         res.status(400).json({ error: "Task Description is required" })
     } else {
-        helpers.addTask(newTask, project_id)
+        helpers.addTask(newTask, id)
         .then(resp => {
             console.log(resp);
             res.status(201).json(resp)

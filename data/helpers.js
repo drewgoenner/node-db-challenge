@@ -25,10 +25,10 @@ function addProject(project) {
     });
 }
 
-function addTask(task, project_id) {
+function addTask(task, id) {
     const newTask = {
         ...task,
-        project_id: project_id
+        project_id: id
     }
     return db('tasks')
     .insert(newTask)
@@ -65,7 +65,7 @@ function getProjects() {
 
 function getTasks() {
     return db('tasks as t')
-    .join('projects as p', 'p.id', 't.id')
+    .join('projects as p', 'p.id', 't.project_id')
     .select(
     't.id', 
     't.description', 
