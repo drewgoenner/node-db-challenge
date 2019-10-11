@@ -70,21 +70,21 @@ function getTasks() {
     't.id', 
     't.description', 
     't.notes', 
-    't.completed as Completed',
+    't.completed',
     'p.name as project_name',
     'p.description as project_description')
     .then(data => {
         const updatedBoolArray = data.map(task => {
-            if(task.task_completed){
+            if(task.completed){
                 const updatedBool = {
                     ...task,
-                    task_completed: true
+                    completed: true
                 };
                 return updatedBool;
             } else {
                 const updatedBool = {
                     ...task,
-                    task_completed: false
+                    completed: false
                 };
                 return updatedBool;
             }
