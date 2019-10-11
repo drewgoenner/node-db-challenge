@@ -1,4 +1,4 @@
-const db = require('./dbConfig');
+const db = require('./db-config.js');
 
 module.exports = {
     addResource,
@@ -65,12 +65,12 @@ function getProjects() {
 
 function getTasks() {
     return db('tasks as t')
-    .join('projects as p', 'p.project_id', 't.project_id')
+    .join('projects as p', 'p.id', 't.id')
     .select(
-    't.task_id', 
+    't.id', 
     't.description', 
     't.notes', 
-    't.completed as task_completed',
+    't.completed as Completed',
     'p.name as project_name',
     'p.description as project_description')
     .then(data => {
